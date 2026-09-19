@@ -13,6 +13,7 @@ import {
   Gochi_Hand,
   Permanent_Marker,
   Rock_Salt,
+  Oi,
 } from "next/font/google";
 import "./globals.css";
 import "./font-families.css";
@@ -94,6 +95,12 @@ const rock = Rock_Salt({
   variable: "--font-rock-family",
 });
 
+const oi = Oi({
+  weight: ["400"],
+  subsets: ["latin"],
+  variable: "--font-oi-family",
+});
+
 export const metadata: Metadata = {
   title: "QuoteIt — lines from friends",
   description: "QuoteIt — a personal book of lines from friends. Search, favorite, and copy.",
@@ -103,7 +110,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${caveat.variable} ${kalam.variable} ${shadows.variable} ${lacquer.variable} ${caveatBrush.variable} ${gamja.variable} ${mynerve.variable} ${yuji.variable} ${schoolbell.variable} ${gochi.variable} ${permanent.variable} ${rock.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${caveat.variable} ${kalam.variable} ${shadows.variable} ${lacquer.variable} ${caveatBrush.variable} ${gamja.variable} ${mynerve.variable} ${yuji.variable} ${schoolbell.variable} ${gochi.variable} ${permanent.variable} ${rock.variable} ${oi.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

@@ -11,7 +11,7 @@ import Icon from "@/components/Icon";
 import IconButton from "@/components/IconButton";
 
 export default function Home() {
-  const [hand, setHand] = useState<HandId>("caveat");
+  const [hand, setHand] = useState<HandId>("gochi");
   const [dark, setDark] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [quotes, setQuotes] = useState<Quote[]>(INITIAL_QUOTES);
@@ -69,7 +69,16 @@ export default function Home() {
     );
   }, [quotes, searchQuery]);
 
-  const featured = useMemo(() => quotes[0], [quotes]);
+  const featured = useMemo(() => {
+    if (quotes.length === 0) return quotes[0];
+    const d = new Date();
+    const key = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+    let h = 0;
+    for (let i = 0; i < key.length; i++) {
+      h = (Math.imul(h, 31) + key.charCodeAt(i)) | 0;
+    }
+    return quotes[Math.abs(h) % quotes.length];
+  }, [quotes]);
   const isFiltering = searchQuery.trim().length > 0;
 
   const ink = dark ? "text-[#ece4d2]" : "text-[#2a241c]";
@@ -87,8 +96,8 @@ export default function Home() {
     >
       <header className={`relative z-10 border-b ${hairline}`}>
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <p className={`${handClass} text-[26px] font-semibold leading-none`}>
-            QuoteIt
+          <p className="font-oi text-[26px] leading-none">
+            
           </p>
           <IconButton
             icon={dark ? "light_mode" : "dark_mode"}
@@ -105,7 +114,10 @@ export default function Home() {
 
       <main className="relative z-10 mx-auto w-full max-w-6xl flex-1 px-6">
         <section className="animate-ledger-rise max-w-3xl pb-10 pt-10 sm:pt-14">
-          <div className="relative mt-5 max-w-xl rotate-[-0.8deg] rounded-[2px] bg-[#fbfaf4] p-4 pb-5 pt-8 text-[#28241d] shadow-[0_6px_20px_rgba(58,42,26,0.4)]">
+          <h1 className="font-ui text-[36px] font-semibold leading-[1.05] tracking-tight sm:text-[36px]">
+            Quote of the day
+          </h1>
+          <div className="relative mt-6 max-w-xl rotate-[-0.8deg] rounded-[2px] bg-[#fbfaf4] p-4 pb-5 pt-8 text-[#28241d] shadow-[0_6px_20px_rgba(58,42,26,0.4)]">
             <span
               aria-hidden="true"
               className="absolute -top-3 left-1/2 h-6 w-24 -translate-x-1/2 rotate-[1.5deg] rounded-[1px] bg-[#d4695e]/85"
@@ -156,7 +168,7 @@ export default function Home() {
           )}
         </section>
 
-        <section aria-label="Quote cards" className="pb-28">
+        <section aria-label="Quote cards" className="pb-16">
           {filteredQuotes.length === 0 ? (
             <div className="max-w-xl rotate-[0.5deg] rounded-[2px] bg-[#fbfaf4] px-6 py-12 text-[#28241d] shadow-[0_3px_10px_rgba(58,42,26,0.45)]">
               <p className={`${handClass} text-[24px] font-medium leading-[1.4]`}>
@@ -182,7 +194,8 @@ export default function Home() {
         </section>
       </main>
 
-      <FontSwitcher currentHand={hand} onSelectHand={setHand} />
+      {/* Hand switcher hidden for now — default hand is Gochi Hand (see useState above). Restore by flipping false to true. */}
+      {false && <FontSwitcher currentHand={hand} onSelectHand={setHand} />}
 
       {draftOpen && (
         <AddQuoteModal
