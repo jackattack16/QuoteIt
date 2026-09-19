@@ -1,0 +1,55 @@
+.font-ui {
+  font-family: var(--font-geist-sans-family);
+}
+
+.font-hand {
+  font-family: var(--font-caveat-family);
+}
+
+.font-kalam {
+  font-family: var(--font-kalam-family);
+}
+
+.font-shadows {
+  font-family: var(--font-shadows-family);
+}
+
+.font-lacquer {
+  font-family: var(--font-lacquer-family);
+}
+
+.font-caveat-brush {
+  font-family: var(--font-caveat-brush-family);
+}
+
+.font-gamja {
+  font-family: var(--font-gamja-family);
+}
+
+.font-mynerve {
+  font-family: var(--font-mynerve-family);
+}
+
+.font-yuji {
+  font-family: var(--font-yuji-family);
+}
+
+.font-schoolbell {
+  font-family: var(--font-schoolbell-family);
+}
+
+.font-gochi {
+  font-family: var(--font-gochi-family);
+}
+
+.font-permanent {
+  font-family: var(--font-permanent-family);
+}
+
+.font-rock {
+  font-family: var(--font-rock-family);
+}
+
+body {
+  font-family: var(--font-geist-sans-family), system-ui, sans-serif;
+}

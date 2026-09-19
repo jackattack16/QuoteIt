@@ -1,26 +1,113 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-ui: var(--font-geist-sans);
+  --font-hand: var(--font-caveat);
+  --font-kalam: var(--font-kalam);
+  --font-shadows: var(--font-shadows);
+  --font-lacquer: var(--font-lacquer);
+  --font-caveat-brush: var(--font-caveat-brush);
+  --font-gamja: var(--font-gamja);
+  --font-mynerve: var(--font-mynerve);
+  --font-yuji: var(--font-yuji);
+  --font-schoolbell: var(--font-schoolbell);
+  --font-gochi: var(--font-gochi);
+  --font-permanent: var(--font-permanent);
+  --font-rock: var(--font-rock);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: #b08c5e;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Cork pinboard — fine grain plus wide tonal blotches */
+.bg-corkboard {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)' opacity='0.16'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.045' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23b)' opacity='0.22'/%3E%3C/svg%3E");
+  box-shadow: inset 0 0 140px rgba(58, 42, 26, 0.28);
+}
+
+/* Single orchestrated entrance — hero only */
+@keyframes ledger-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Feedback that answers an action — favorite + toast only */
+@keyframes seal-in {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-ledger-rise {
+  animation: ledger-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-seal-in {
+  animation: seal-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-toast-in {
+  animation: toast-in 0.22s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.25s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ledger-rise,
+  .animate-seal-in,
+  .animate-toast-in,
+  .animate-fade-in {
+    animation: none;
+  }
 }
